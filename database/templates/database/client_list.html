@@ -1,10 +1,14 @@
 {% extends "database/base.html" %}
 {% block content %}
 	{% if user.is_authenticated %}
+	<nav class="submenu">
+		<a href="{% url 'database-client-create' %}">Dodaj klienta</a>
+	</nav>
 	<h1>Klienci:</h1>
 		{% for client in clients %}
 			<article class="client">
 				<a href="{% url 'database-client-detail' client.id %}">{{ client.first_name}} {{ client.last_name }}</a>
+				<p>{{ client.email }}</p>
 			</article>
 		{% endfor %}
 	{% else %}

@@ -17,8 +17,8 @@
 			<a href="{% url 'database-room-update' object.room.id %}">Edytuj pokój: {{ object.room }}</p>
 			<a href="{% url 'database-client-update' object.client.id %}">Edytuj klienta: {{ object.client }}</p>
 		{% else %}
-			<a href="{% url 'database-room-create' %}">Dodaj pokój</p>
-			<a href="{% url 'database-client-create' %}">Dodaj klienta</p>
+			<a target="_blank" href="{% url 'database-room-create' %}">Dodaj pokój</p>
+			<a target="_blank" href="{% url 'database-client-create' %}">Dodaj klienta</p>
 		{% endif %}
 	</div>
 {% endblock content %}

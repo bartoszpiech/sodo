@@ -1,10 +1,13 @@
 {% extends "database/base.html" %}
 {% block content %}
 	{% if user.is_authenticated %}
+	<nav class="submenu">
+		<a href="{% url 'database-medicine-create' %}">Dodaj lekarstwo</a>
+	</nav>
 	<h1>Lekarstwa:</h1>
 		{% for medicine in medicines%}
 			<article class="medicine">
-				<a href="{% url 'database-medicine-detail' medicine.id %}">{{ medicine.name }}</a>
+				<a href="{% url 'database-medicine-detail' medicine.id %}">{{ medicine.name }}</a> przyjmuje: <a href="{% url 'database-patient-detail' medicine.patient.id %}">{{ medicine.patient }}</a>
 			</article>
 		{% endfor %}
 	{% else %}

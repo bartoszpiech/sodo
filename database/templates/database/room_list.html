@@ -1,11 +1,14 @@
 {% extends "database/base.html" %}
 {% block content %}
 	{% if user.is_authenticated %}
+	<nav class="submenu">
+		<a href="{% url 'database-room-create' %}">Dodaj pokój</a>
+	</nav>
 	<h1>Pokoje:</h1>
 		{% for room in rooms%}
 			<article class="room">
 				<a href="{% url 'database-room-detail' room.id %}">Pokój nr. {{ room.number}}</a>
-				<p>Cena: {{ room.price }}</p>
+				<p>Cena: {{ room.price }}zł</p>
 			</article>
 		{% endfor %}
 	{% else %}
