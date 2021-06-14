@@ -4,6 +4,7 @@
 		<h2>{{ object.first_name}} {{ object.last_name }}</h2>
 		<p>Telefon: {{ object.tel_number }}</p>
 		<p>E-mail: {{ object.email }}</p>
+		<p>Podopieczny: <a href="{% url 'database-patient-detail' object.patient.id %}">{{ object.patient }}</a></p>
 
 		<a href="{% url 'database-client-update' client.id %}">Edytuj klienta</a></br>
 		<a href="{% url 'database-client-delete' client.id %}">Usuń klienta</a>

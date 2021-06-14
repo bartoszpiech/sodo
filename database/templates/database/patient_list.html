@@ -1,15 +1,29 @@
 {% extends "database/base.html" %}
 {% block content %}
 	{% if user.is_authenticated %}
+	{% with True as flag %}
+	<nav class="submenu">
+		<ul style="padding: 0px">
+		<li style="padding: 0px"><a href="{% url 'database-patient-create' %}">Dodaj pacjenta</a></li>
+		{% if flag == True %}
+		<li style="padding: 9px"><a href="{% update_variable False as flag %}">Pokaż aktywnych i nieaktywnych</a></li>
+		{% else %}
+			<li style="padding: 9px"><a href="{% update_variable True as flag %}">Pokaż tylko aktywnych</a></li>
+		{% endif %}
+		</ul>
+	</nav>
 	<h1>Pacjenci:</h1>
 		{% for patient in patients %}
+		{% if patient.is_active == True or patient.showonly_active == False %}
 			<article class="patient">
 				<a href="{% url 'database-patient-detail' patient.id %}">{{ patient.first_name}} {{ patient.last_name }}</a>
 				<p>Urodzony: {{ patient.birth_date }}</p>
 			</article>
+			{% endif %}
 		{% endfor %}
 	{% else %}
 		<h1>Zaloguj się aby uzyskać dostęp do danych pacjentów</h1>
 		<p>Jeżeli nie masz konta, skontaktuj się z administratorem aby je założył</p>
+	{% endwith %}
 	{% endif %}
 {% endblock content %}

@@ -6,8 +6,44 @@
 		<p>Choroby: {{ object.diseases }}</p>
 		<p>Aktywny: {{ object.is_active }}</p>
 		<p>Pokój: {{ object.room }}</p>
-		<p>Klient: {{ object.client }}</p>
+		<p>Klient: <a href="{% url 'database-client-detail' object.client.id %}">{{ object.client }}</a></p>
 
+		<h2 style="text-align: center;">Leki:</h2>
+		<table style="text-align: center;width:100%">
+			<tr>
+				<th>Nazwa</th>
+				<th>Substancja aktywna</th>
+				<th>Cena [zł]</th>
+				<th>Dawka [g]</th>
+				<th>Razy Dziennie</th>
+				<!--<th>Edytuj</th>
+				<th>Usuń</th>-->
+			</tr>
+		{% for medicine in object.medicines.all %}
+			<tr>
+				<td>{{ medicine.name }}</td>
+				<td>{{ medicine.active_substance }}</td>
+				<td>{{ medicine.price }}</td>
+				<td>{{ medicine.dose }}</td>
+				<td>{{ medicine.times_a_day }}</p>
+				<td><a href="{% url 'database-medicine-update' medicine.id %}">Edytuj</a></p>
+				<td><a href="{% url 'database-medicine-delete' medicine.id %}">Usuń</a></p>
+			</tr>
+		{% endfor %}
+			<tr>
+				<th>Suma</th>
+				<td></td>
+				<td>{{ object.total_medicine_sum }}</td>
+
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+		</br>
+
+		<a href="{% url 'database-medicine-create' %}">Dodaj lekarstwo</a></br>
 		<a href="{% url 'database-patient-update' patient.id %}">Edytuj pacjenta</a></br>
 		<a href="{% url 'database-patient-delete' patient.id %}">Usuń pacjenta</a>
 

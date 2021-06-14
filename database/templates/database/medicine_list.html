@@ -1,0 +1,14 @@
+{% extends "database/base.html" %}
+{% block content %}
+	{% if user.is_authenticated %}
+	<h1>Lekarstwa:</h1>
+		{% for medicine in medicines%}
+			<article class="medicine">
+				<a href="{% url 'database-medicine-detail' medicine.id %}">{{ medicine.name }}</a>
+			</article>
+		{% endfor %}
+	{% else %}
+		<h1>Zaloguj się aby uzyskać dostęp do danych o lekarstwach</h1>
+		<p>Jeżeli nie masz konta, skontaktuj się z administratorem aby je założył</p>
+	{% endif %}
+{% endblock content %}

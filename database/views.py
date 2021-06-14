@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Patient, Room, Client
+#from .models import Patient, Room, Client
+from .models import *
+#from django import template TODO
 
 #from extra_views import CreateWithInlinesView, InlineFormSet
 
@@ -23,10 +25,18 @@ class PatientListView(ListView):
 
 class PatientDetailView(LoginRequiredMixin, DetailView):
     model = Patient
+    """
+    total_medicine_price = 0.0
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        instance = self.get_object()
+        context['medicine
+        """
 
 class PatientCreateView(LoginRequiredMixin, CreateView):
     model = Patient
     fields = '__all__'
+
     #fields = ['first_name', 'last_name', 'birth_date', 'diseases', 'is_active',\
     #        'room', 'client', 'email']
 
@@ -91,3 +101,30 @@ class ClientUpdateView(LoginRequiredMixin, UpdateView):
 class ClientDeleteView(LoginRequiredMixin, DeleteView):
     model = Client
     success_url = '/'
+
+class MedicineListView(ListView):
+    model = Medicine
+    context_object_name = 'medicines'
+    ordering = ['name']
+
+class MedicineDetailView(LoginRequiredMixin, DetailView):
+    model = Medicine
+
+class MedicineCreateView(LoginRequiredMixin, CreateView):
+    model = Medicine
+    fields = '__all__'
+
+class MedicineUpdateView(LoginRequiredMixin, UpdateView):
+    model = Medicine
+    fields = '__all__'
+
+class MedicineDeleteView(LoginRequiredMixin, DeleteView):
+    model = Medicine
+    success_url = '/'
+
+""" TODO
+register = template.Library()
+@register.simple_tag
+def update_variable(value):
+    return value
+    """

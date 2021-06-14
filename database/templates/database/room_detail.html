@@ -5,11 +5,11 @@
 		<p>Liczba łóżek: {{ object.amount_of_beds }}</p>
 		<p>Cena: {{ object.price }}</p>
 		<p>Balkon: {{ object.balcony }}</p>
-		<h3>Zamieszkują:</h3>
+		<p>Zamieszkują:
 		{% for patient in object.patients.all %}
-		<a href="{% url 'database-patient-detail' patient.id %}">{{patient.first_name}} {{patient.last_name}}</a>
+		<a href="{% url 'database-patient-detail' patient.id %}">{{patient.first_name}} {{patient.last_name}}</a>,
 		{% endfor %}
-		</br>
+		</p>
 
 		<a href="{% url 'database-room-update' room.id %}">Edytuj pokój</a></br>
 		<a href="{% url 'database-room-delete' room.id %}">Usuń pokój</a>

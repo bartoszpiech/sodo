@@ -1,7 +1,11 @@
 from django.urls import path
+"""
 from .views import PatientListView, PatientDetailView, PatientCreateView, PatientUpdateView, PatientDeleteView
 from .views import RoomListView, RoomDetailView, RoomCreateView, RoomUpdateView, RoomDeleteView
 from .views import ClientListView, ClientDetailView, ClientCreateView, ClientUpdateView, ClientDeleteView
+from .views import ClientListView, ClientDetailView, ClientCreateView, ClientUpdateView, ClientDeleteView
+"""
+from .views import *
 from . import views
 
 urlpatterns = [
@@ -37,4 +41,14 @@ urlpatterns = [
                 name = 'database-client-update'),
         path('client/<int:pk>/delete/', ClientDeleteView.as_view(), \
                 name = 'database-client-delete'),
+
+        path('medicine/', MedicineListView.as_view(), name = 'database-medicine'),
+        path('medicine/<int:pk>/', MedicineDetailView.as_view(), \
+                name = 'database-medicine-detail'),
+        path('medicine/new/', MedicineCreateView.as_view(), \
+                name = 'database-medicine-create'),
+        path('medicine/<int:pk>/update/', MedicineUpdateView.as_view(), \
+                name = 'database-medicine-update'),
+        path('medicine/<int:pk>/delete/', MedicineDeleteView.as_view(), \
+                name = 'database-medicine-delete'),
         ]

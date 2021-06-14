@@ -1,0 +1,15 @@
+{% extends "database/base.html" %}
+{% block content %}
+	<article class="object">
+		<h2>{{ object.name}}</h2>
+		<p>Substancja aktywna: {{ object.active_substance}}</p>
+		<p>Cena: {{ object.price }}</p>
+		<p>Dawka: {{ object.dose}}</p>
+		<p>Razy dziennie: {{ object.times_a_day }}</p>
+		<p>Pacjent przyjmujący lek: <a href="{% url 'database-patient-detail' object.patient.id %}">{{ object.patient }}</a></p>
+
+		<a href="{% url 'database-medicine-update' medicine.id %}">Edytuj lek</a></br>
+		<a href="{% url 'database-medicine-delete' medicine.id %}">Usuń lek</a>
+
+	</article>
+{% endblock content %}
