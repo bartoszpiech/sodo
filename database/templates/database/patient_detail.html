@@ -1,0 +1,15 @@
+{% extends "database/base.html" %}
+{% block content %}
+	<article class="object">
+		<h2>{{ object.first_name}} {{ object.last_name }}</h2>
+		<p>Urodzony: {{ object.birth_date }}</p>
+		<p>Choroby: {{ object.diseases }}</p>
+		<p>Aktywny: {{ object.is_active }}</p>
+		<p>Pokój: {{ object.room }}</p>
+		<p>Klient: {{ object.client }}</p>
+
+		<a href="{% url 'database-patient-update' patient.id %}">Edytuj pacjenta</a></br>
+		<a href="{% url 'database-patient-delete' patient.id %}">Usuń pacjenta</a>
+
+	</article>
+{% endblock content %}

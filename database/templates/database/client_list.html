@@ -1,0 +1,14 @@
+{% extends "database/base.html" %}
+{% block content %}
+	{% if user.is_authenticated %}
+	<h1>Klienci:</h1>
+		{% for client in clients %}
+			<article class="client">
+				<a href="{% url 'database-client-detail' client.id %}">{{ client.first_name}} {{ client.last_name }}</a>
+			</article>
+		{% endfor %}
+	{% else %}
+		<h1>Zaloguj się aby uzyskać dostęp do danych klientów</h1>
+		<p>Jeżeli nie masz konta, skontaktuj się z administratorem aby je założył</p>
+	{% endif %}
+{% endblock content %}

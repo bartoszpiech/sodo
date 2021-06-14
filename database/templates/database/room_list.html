@@ -1,0 +1,15 @@
+{% extends "database/base.html" %}
+{% block content %}
+	{% if user.is_authenticated %}
+	<h1>Pokoje:</h1>
+		{% for room in rooms%}
+			<article class="room">
+				<a href="{% url 'database-room-detail' room.id %}">Pokój nr. {{ room.number}}</a>
+				<p>Cena: {{ room.price }}</p>
+			</article>
+		{% endfor %}
+	{% else %}
+		<h1>Zaloguj się aby uzyskać dostęp do danych pokoi</h1>
+		<p>Jeżeli nie masz konta, skontaktuj się z administratorem aby je założył</p>
+	{% endif %}
+{% endblock content %}

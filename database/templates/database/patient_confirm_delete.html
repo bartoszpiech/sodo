@@ -1,0 +1,16 @@
+{% extends "database/base.html" %}
+{% block content %}
+	<div>
+		<form method="POST">
+			{% csrf_token %}
+			<h2>Usuwanie pacjenta</h2>
+			<fieldset>
+				<h2>Czy na pewno usunąć pacjenta "{{ object.last_name }}"</h2>
+			</fieldset>
+			<div>
+				<button type="submit">Tak, usuń pacjenta</button>
+				<a href="{% url 'database-patient-detail' patient.id %}">Nie, powrót</a>
+			</div>
+		</form>
+	</div>
+{% endblock content %}

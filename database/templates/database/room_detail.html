@@ -1,0 +1,17 @@
+{% extends "database/base.html" %}
+{% block content %}
+	<article class="object">
+		<h2>Pokój nr. {{ object.number }}</h2>
+		<p>Liczba łóżek: {{ object.amount_of_beds }}</p>
+		<p>Cena: {{ object.price }}</p>
+		<p>Balkon: {{ object.balcony }}</p>
+		<h3>Zamieszkują:</h3>
+		{% for patient in object.patients.all %}
+		<a href="{% url 'database-patient-detail' patient.id %}">{{patient.first_name}} {{patient.last_name}}</a>
+		{% endfor %}
+		</br>
+
+		<a href="{% url 'database-room-update' room.id %}">Edytuj pokój</a></br>
+		<a href="{% url 'database-room-delete' room.id %}">Usuń pokój</a>
+	</article>
+{% endblock content %}

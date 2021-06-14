@@ -1,0 +1,24 @@
+{% extends "database/base.html" %}
+{% block content %}
+	<div>
+		<form method="POST">
+			{% csrf_token %}
+			<h2>Aktualizacja danych pacjenta</h2>
+			<fieldset>
+				{{ form.as_p }}
+			</fieldset>
+			<div>
+				<button type="submit">Zatwierdź</button>
+			</div>
+		</form>
+	</div>
+	<div>
+		{% if patient != None %}
+			<a href="{% url 'database-room-update' object.room.id %}">Edytuj pokój: {{ object.room }}</p>
+			<a href="{% url 'database-client-update' object.client.id %}">Edytuj klienta: {{ object.client }}</p>
+		{% else %}
+			<a href="{% url 'database-room-create' %}">Dodaj pokój</p>
+			<a href="{% url 'database-client-create' %}">Dodaj klienta</p>
+		{% endif %}
+	</div>
+{% endblock content %}

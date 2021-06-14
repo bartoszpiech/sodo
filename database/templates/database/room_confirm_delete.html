@@ -1,0 +1,16 @@
+{% extends "database/base.html" %}
+{% block content %}
+	<div>
+		<form method="POST">
+			{% csrf_token %}
+			<h2>Usuwanie pokoju</h2>
+			<fieldset>
+				<h2>Czy na pewno usunąć pokój nr. "{{ object.number }}"</h2>
+			</fieldset>
+			<div>
+				<button type="submit">Tak, usuń pokój</button>
+				<a href="{% url 'database-room-detail' room.id %}">Nie, powrót</a>
+			</div>
+		</form>
+	</div>
+{% endblock content %}

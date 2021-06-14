@@ -1,0 +1,15 @@
+{% extends "database/base.html" %}
+{% block content %}
+	{% if user.is_authenticated %}
+	<h1>Pacjenci:</h1>
+		{% for patient in patients %}
+			<article class="patient">
+				<a href="{% url 'database-patient-detail' patient.id %}">{{ patient.first_name}} {{ patient.last_name }}</a>
+				<p>Urodzony: {{ patient.birth_date }}</p>
+			</article>
+		{% endfor %}
+	{% else %}
+		<h1>Zaloguj się aby uzyskać dostęp do danych pacjentów</h1>
+		<p>Jeżeli nie masz konta, skontaktuj się z administratorem aby je założył</p>
+	{% endif %}
+{% endblock content %}

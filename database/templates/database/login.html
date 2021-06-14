@@ -1,0 +1,14 @@
+{% extends "database/base.html" %}
+{% block content %}
+	<div>
+		<form method="POST">
+			{% csrf_token %}
+			<fieldset>
+				{{ form.as_p }}
+			</fieldset>
+			<div>
+				<button type="submit">Zaloguj się</button>
+			</div>
+		</form>
+	</div>
+{% endblock content %}
